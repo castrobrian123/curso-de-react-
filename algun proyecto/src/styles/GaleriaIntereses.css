@@ -1,0 +1,20 @@
+.galeria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn-interes {
+  background: #eee;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-interes.activo {
+  background: #28a745;
+  color: white;
+}
