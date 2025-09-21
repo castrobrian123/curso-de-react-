@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+    font-family: "Rubik", sans-serif;
+    background-color: lightgreen;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+main {
+    display: grid;
+    gap: 40px;
+    padding: 1px 100px;
+    padding-bottom: 80px;
+    margin-top: 24px;
+}
+
+footer {
+    background-color: darkcyan;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+.Logo_De_Empresa {
+    display: grid;
+    align-items: center;
+}
+
+.Logo_De_Empresa img {
+    display: block;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+}
+
+.Logo_De_Empresa h2 {
+    color: white;
+    font-weight: bold;
+    margin: 0;
+    font-size: 1.8em;
+}
+
+.barra_navegacion {
+    background-color: darkcyan;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 40px;
+    flex-wrap: wrap;
+}
+
+#barra_de_navegacion_de_categorias_de_productos {
+    background-color: darkcyan;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+ul {
+    display: flex;
+    gap: 8em;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.boton {
+    padding: 10px 20px;
+    font-weight: bold;
+    background-color: orange;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.boton:hover {
+    background-color: darkorange;
+}
+
+section {
+    background-color: paleturquoise;
+    padding: 20px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.Seccion_De_Publicacion {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+h2 {
+    color: darkorange;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 1.8em;
+}
+
+.La_Publicacion {
+    background-color: lightcyan;
+    border: 4px solid darkorange;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: auto;
+}
+
+.Precio_Del_Producto {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: green;
+}
+
+#boton-carrito {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#boton-carrito:hover {
+    background-color: #218838; 
+    transform: scale(1.1);
+}
+
+.Categoria {
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px){
+    
+    main {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    section {
+        padding: 15px;
+    }
+
+    .Seccion_De_Publicacion {
+        grid-template-columns: 1fr;
+    }
+
+    .barra_navegacion {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        text-align: center;
+    }
+
+    ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #boton-carrito {
+        bottom: 10px;
+        right: 10px;
+        left: unset;
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .boton_colaborar {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    h1, h2, h3 {
+        font-size: 1.2em;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+}
+
+
