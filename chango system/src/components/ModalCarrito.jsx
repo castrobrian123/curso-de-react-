@@ -1,47 +1,56 @@
 import React from "react";
 
-function ModalCarrito({ cart, onClose, agregarUnidad, eliminarUnidad, vaciarCarrito, confirmarCompra }) {
+function ModalCarrito({ cart,onClose,agregarUnidad,eliminarUnidad,vaciarCarrito,confirmarCompra, }) {
+  
+  const totalCarrito = cart.reduce(
+    (total, producto) => total + producto.precio * producto.cantidad,
+    0
+  );
+
   return (
     <div className="modal-overlay">
-      <div className="modal-carrito">
+      <div className="modal-carrito cards-mode">
         <button className="cerrar-modal" onClick={onClose}>
-          X
+          x
         </button>
         <h3>Carrito de Compras</h3>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Cantidad</th>
-              <th>Precio Unitario</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cart.length === 0 ? (
-              <tr>
-                <td colSpan="4">El carrito está vacío</td>
-              </tr>
-            ) : (
-              cart.map((producto, index) => (
-                <tr key={index}>
-                  <td>{producto.nombre}</td>
-                  <td>{producto.cantidad}</td>
-                  <td>${producto.precio.toFixed(2)}</td>
-                  <td>
-                    <button className="btn-agregar" onClick={() => agregarUnidad(producto.nombre)}>
-                      Agregar unidad
+        {cart.length === 0 ? (
+          <p className="carrito-vacio">El carrito está vacío</p>
+        ) : (
+          <>
+            <div className="productos-cards">
+              {cart.map((producto, index) => (
+                <div key={index} className="card-producto">
+                  <div className="info-producto">
+                    <h4>{producto.nombre}</h4>
+                    <p>Cantidad: {producto.cantidad}</p>
+                    <p>Precio unitario: ${producto.precio.toFixed(2)}</p>
+                    <p>Total: ${(producto.precio * producto.cantidad).toFixed(2)}</p>
+                  </div>
+                  <div className="acciones-producto">
+                    <button
+                      className="btn-agregar"
+                      onClick={() => agregarUnidad(producto.nombre)}
+                    >
+                      +
                     </button>
-                    <button className="btn-eliminar" onClick={() => eliminarUnidad(producto.nombre)}>
-                      Eliminar unidad
+                    <button
+                      className="btn-eliminar"
+                      onClick={() => eliminarUnidad(producto.nombre)}
+                    >
+                      -
                     </button>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="total-general">
+              <h4>Total del carrito: ${totalCarrito.toFixed(2)}</h4>
+            </div>
+          </>
+        )}
 
         <div className="acciones-carrito">
           <button className="btn-eliminar" onClick={vaciarCarrito}>
