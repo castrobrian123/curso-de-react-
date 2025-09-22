@@ -89,3 +89,13 @@ main {
   background: #388e3c;
   color: white;
 }
+
+.carrito button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+}

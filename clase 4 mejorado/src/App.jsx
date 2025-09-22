@@ -43,7 +43,7 @@ function App() {
 
       <main>
         <h2>Productos Disponibles</h2>
-        <ListaDeProductos productos={productos} addToCart={añadirAlCarrito} />
+        <ListaDeProductos productos={productos} añadirAlCarrito={añadirAlCarrito} />
 
         <h2>Carrito de Compras</h2>
         <Carrito carrito={carrito} vaciarCarrito={vaciarCarrito} />
