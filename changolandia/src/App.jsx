@@ -25,32 +25,6 @@ function App() {
     });
   };
 
-  const agregarUnidad = (nombre) => {
-  setCart(prevCart =>
-    prevCart.map(p =>
-      p.nombre === nombre ? { ...p, cantidad: p.cantidad + 1 } : p
-    )
-  );
-};
-
-const eliminarUnidad = (nombre) => {
-  setCart(prevCart =>
-    prevCart
-      .map(p =>
-        p.nombre === nombre ? { ...p, cantidad: p.cantidad - 1 } : p
-      )
-      .filter(p => p.cantidad > 0)
-  );
-};
-
-  const vaciarCarrito = () => setCart([]);
-
-  const confirmarCompra = () => {
-    alert("Compra confirmada!");
-    vaciarCarrito();
-    setShowModal(false);
-  };
-
   return (
     <div className="App">
       <Header logo={logoEmpresa} />
@@ -71,11 +45,8 @@ const eliminarUnidad = (nombre) => {
       {showModal && (
         <ModalCarrito
           cart={cart}
+          setCart={setCart}
           onClose={() => setShowModal(false)}
-          agregarUnidad={agregarUnidad}
-          eliminarUnidad={eliminarUnidad}
-          vaciarCarrito={vaciarCarrito}
-          confirmarCompra={confirmarCompra}
         />
       )}
     </div>
@@ -83,4 +54,3 @@ const eliminarUnidad = (nombre) => {
 }
 
 export default App;
-
