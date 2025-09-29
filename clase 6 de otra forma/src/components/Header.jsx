@@ -8,7 +8,7 @@ function Header({ toggleCarrito }) {
       <section className="barra_navegacion">
         <div className="Logo_De_Empresa">
           <img src={logoEmpresa} alt="Logo de la Empresa" />
-          <h2>Mi eCommerce</h2>
+          <h2>Changolandia</h2>
         </div>
 
         <nav className="menu_navegacion">
