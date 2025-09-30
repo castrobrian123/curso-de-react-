@@ -122,54 +122,22 @@ function App() {
 
 
       <main id="contenedor-productos">
+
         <Routes>
+
           <Route path="/" element={<Inicio />} />
           <Route path="/inicio" element={<Inicio />} />
           <Route path="/acerca" element={<AcercaDeLaEmpresa />} />
           <Route path="/contactos" element={<Contactos />} />
-
-
-
-          <Route
-            path="/productos"
-            element={<ListaDeProductos productos={productos} añadirAlCarrito={añadirAlCarrito} />}
-          />
-          <Route
-            path="/productos/:id"
-            element={<ProductoDetalle productos={productos} />} 
-          />
-          <Route
-            path="/login"
-            element={isAuthenticated ? <Navigate to="/" replace /> : <Login setIsAuthenticated={setIsAuthenticated} />}
-          />
+          <Route path="/productos" element={ <ListaDeProductos productos={productos} añadirAlCarrito={añadirAlCarrito} /> } />
+          <Route path="/productos/:id" element={ <ProductoDetalle productos={productos} /> } />
+          <Route path="/login" element={isAuthenticated ? <Navigate to="/" replace /> : <Login setIsAuthenticated={setIsAuthenticated} /> } />
 
           {/* Rutas protegidas */}
-          <Route
-            path="/carrito"
-            element={
-              <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <Carrito
-                  carrito={carrito}
-                  eliminarDelCarrito={eliminarDelCarrito}
-                  aumentarCantidad={aumentarCantidad}
-                  disminuirCantidad={disminuirCantidad}
-                />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <Admin
-                  API_URL={API_URL}
-                  productos={productos}
-                  setProductos={setProductos}
-                  actualizarStock={actualizarStock}
-                />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/carrito" element={ <ProtectedRoute isAuthenticated={isAuthenticated}> <Carrito carrito={carrito} eliminarDelCarrito={eliminarDelCarrito} aumentarCantidad={aumentarCantidad} disminuirCantidad={disminuirCantidad} /> </ProtectedRoute>}/>
+
+          <Route path="/admin" element={ <ProtectedRoute isAuthenticated={isAuthenticated}> <Admin API_URL={API_URL} productos={productos} setProductos={setProductos} actualizarStock={actualizarStock} /> </ProtectedRoute>}/>
+
         </Routes>
       </main>
       <Footer/>
