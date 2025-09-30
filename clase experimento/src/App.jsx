@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
+import CategoriaDeProductos from "./components/CategoriaDeProductos";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ListaDeProductos from "./components/ListaDeProductos";
@@ -131,7 +132,7 @@ function App() {
           />
           <Route
             path="/productos/:id"
-            element={<ProductoDetalle productos={productos} />}
+            element={<ProductoDetalle productos={productos} />} 
           />
           <Route
             path="/login"

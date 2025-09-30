@@ -56,9 +56,9 @@ export default function Admin({ API_URL, productos, setProductos, actualizarStoc
   };
 
   return (
-    <section style={{ padding: "20px" }}>
+        <section className="admin-container">
       <h2>Panel de Administración</h2>
-      <form onSubmit={handleAgregarProducto} style={{ marginBottom: "30px" }}>
+      <form onSubmit={handleAgregarProducto} className="admin-form">
         <h3>Agregar producto</h3>
         <input name="categoria" placeholder="Categoría" value={nuevoProducto.categoria} onChange={handleChangeNuevo} required />
         <input name="nombre" placeholder="Nombre" value={nuevoProducto.nombre} onChange={handleChangeNuevo} required />
@@ -69,7 +69,7 @@ export default function Admin({ API_URL, productos, setProductos, actualizarStoc
       </form>
 
       <h3>Inventario</h3>
-      <table border="1" cellPadding="10" style={{ width: "100%", textAlign: "center" }}>
+      <table className="admin-table">
         <thead>
           <tr>
             <th>ID</th><th>Categoría</th><th>Nombre</th><th>Precio</th><th>Stock</th><th>Imagen</th><th>Acciones</th>
@@ -85,11 +85,13 @@ export default function Admin({ API_URL, productos, setProductos, actualizarStoc
               <td>{p.stock}</td>
               <td>{editandoId === p.id ? <input name="imagen" value={productoEditado.imagen} onChange={handleChangeEditado} /> : <img src={p.imagen} width="50" alt={p.nombre} />}</td>
               <td>
-                {editandoId === p.id ? <button onClick={guardarEdicion}>Guardar</button> : (
+                {editandoId === p.id ? (
+                  <button onClick={guardarEdicion} className="button-save">Guardar</button>
+                ) : (
                   <>
-                    <button onClick={() => handleReponerStock(p.id)}>+1 Stock</button>
-                    <button onClick={() => activarEdicion(p)}>Editar</button>
-                    <button onClick={() => handleEliminar(p.id)} style={{ color: "red" }}>Eliminar</button>
+                    <button onClick={() => handleReponerStock(p.id)} className="button-stock">Reponer Stock</button>
+                    <button onClick={() => activarEdicion(p)} className="button-edit">Editar</button>
+                    <button onClick={() => handleEliminar(p.id)} className="button-delete">Eliminar</button>
                   </>
                 )}
               </td>
