@@ -562,3 +562,91 @@ h3 {
     background-color: #4CAF50;
     color: white;
 }
+
+
+
+.carrito-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: paleturquoise;
+}
+
+.carrito-titulo {
+  text-align: center;
+  margin-bottom: 20px;
+  
+}
+
+.carrito-vacio {
+  text-align: center;
+  font-size: 18px;
+  
+}
+
+.tabla-wrapper {
+  overflow-x: auto;
+}
+
+.carrito-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.carrito-tabla thead {
+  background-color: skyblue;
+  color: white;
+}
+
+.carrito-tabla th,
+.carrito-tabla td {
+  padding: 12px;
+  text-align: center;
+}
+
+.subtotal {
+  font-weight: bold;
+}
+
+.btn-cantidad {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 6px 10px;
+  margin: 0 3px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-cantidad:hover {
+  background-color: #ddd;
+}
+
+.btn-eliminar {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-left: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-eliminar:hover {
+  background-color: #e60000;
+}
+
+.carrito-total {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.carrito-total span {
+  
+  font-weight: bold;
+}
