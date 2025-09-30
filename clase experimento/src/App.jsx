@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import CategoriaDeProductos from "./components/CategoriaDeProductos";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import AcercaDeLaEmpresa from "./pages/AcercaDeLaEmpresa";
+import Contactos from "./pages/Contactos";
 import ListaDeProductos from "./components/ListaDeProductos";
 import ProductoDetalle from "./pages/ProductoDetalle";
 import Carrito from "./pages/Carrito";
@@ -123,6 +125,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/inicio" element={<Inicio />} />
+          <Route path="/acerca" element={<AcercaDeLaEmpresa />} />
+          <Route path="/contactos" element={<Contactos />} />
 
 
 
