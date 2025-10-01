@@ -15,6 +15,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Inicio from "./pages/Inicio";
 import ProtectedRoute from "./components/ProtectedRoute";
+import PerfilFlotante from "./components/PerfilFlotante";
 import "./App.css";
 
 function App() {
@@ -34,6 +35,13 @@ function App() {
   const toggleCarrito = () => setCarritoAbierto(prev => !prev);
 
   const API_URL = "https://68d87e112144ea3f6da833c6.mockapi.io/ListaDeProductos";
+
+  const handleLogout = () => {
+    localStorage.removeItem("usuarioActivo");
+    localStorage.removeItem("isAuthenticated");
+    setUsuarioActivo(null);
+    setIsAuthenticated(false);
+  };
 
   // Cargar productos
   useEffect(() => {
@@ -161,6 +169,11 @@ function App() {
       </main>
 
       <Footer />
+
+      {/* 🔹 Perfil flotante si hay sesión iniciada */}
+      {isAuthenticated && usuarioActivo && (
+        <PerfilFlotante usuario={usuarioActivo} onLogout={handleLogout} />
+      )}
 
       {/* 🔹 Modal del carrito */}
       {carritoAbierto && (

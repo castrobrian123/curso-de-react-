@@ -650,3 +650,41 @@ h3 {
   
   font-weight: bold;
 }
+
+
+
+.perfil-flotante {
+  position: fixed;
+  top: 780px;
+  left: 20px;
+  background: white;
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 9999;
+  min-width: 200px;
+}
+
+.perfil-flotante h4 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.perfil-flotante p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.perfil-flotante button {
+  background: #c0392b;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.perfil-flotante button:hover {
+  background: #e74c3c;
+}
