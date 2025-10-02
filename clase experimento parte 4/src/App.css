@@ -55,6 +55,18 @@ footer {
     margin-bottom: 1rem;
 }
 
+.contenedor_centrado label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.contenedor_centrado input {
+    padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
 .boton_colaborar {
     background-color: mediumseagreen;
     color: white;

@@ -7,7 +7,7 @@ export default function ListaDeProductos({ productos, añadirAlCarrito }) {
     return <p>No hay productos disponibles.</p>;
   }
 
-  // Agrupar por categorías (como antes)
+  
   const categorias = productos.reduce((acc, producto) => {
     const cat = producto.categoria || "Sin Categoría";
     if (!acc[cat]) acc[cat] = [];

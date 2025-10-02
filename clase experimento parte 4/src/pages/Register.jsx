@@ -1,5 +1,5 @@
 
-// pages/Register.jsx
+//Register.jsx
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -29,32 +29,52 @@ export default function Register({ setIsAuthenticated, setUsuarioActivo }) {
       return setError("El usuario ya existe.");
     }
 
-    const newUser = { email, password }; // mock: contraseña en claro (NO usar en producción)
+    const newUser = { email, password }; 
     users.push(newUser);
     saveUsers(users);
     localStorage.setItem("usuarioActivo", JSON.stringify(newUser));
     localStorage.setItem("isAuthenticated", "true");
     setUsuarioActivo && setUsuarioActivo(newUser);
     setIsAuthenticated && setIsAuthenticated(true);
-    navigate("/"); // o /carrito si preferís
+    navigate("/"); 
   };
 
   return (
-    <section style={{ padding: 20, maxWidth: 500, margin: "auto" }}>
+    <section className="Panel_De_Formulario_De_Contacto" >
       <h2>Registro</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="error">{error}</p>}
       <form onSubmit={handleRegister}>
-        <div>
+
+        <div className="contenedor_centrado">
+
           <label>Email</label>
           <input value={email} onChange={(e) => setEmail(e.target.value)} required />
+
         </div>
-        <div>
+
+        <div className="contenedor_centrado">
+
           <label>Contraseña</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+
         </div>
-        <button type="submit">Crear cuenta</button>
+
+        <div className="contenedor_centrado">
+
+          <button type="submit" className="boton">Crear cuenta</button>
+
+        </div>
+        
       </form>
-      <p>¿Ya tenés cuenta? <Link to="/login">Iniciá sesión</Link></p>
+
+      <div className="contenedor_centrado">
+
+        <p>¿Ya tenés cuenta? <Link to="/login" className="boton">Iniciá sesión</Link></p>
+
+      </div>
+      
     </section>
+
   );
+
 }

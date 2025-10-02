@@ -1,6 +1,5 @@
 
-
-// components/PerfilFlotante.jsx
+//PerfilFlotante.jsx
 import React from "react";
 
 export default function PerfilFlotante({ usuario, onLogout }) {

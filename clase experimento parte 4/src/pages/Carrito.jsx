@@ -17,7 +17,7 @@ export default function Carrito({
   const generarPDF = async () => {
     if (carrito.length === 0) return alert("El carrito está vacío");
 
-    // ⚡ Import dinámico: evita que jsPDF/autotable se carguen en el bundle inicial
+    
     const { default: jsPDF } = await import("jspdf");
     const { default: autoTable } = await import("jspdf-autotable");
 
@@ -25,14 +25,14 @@ export default function Carrito({
     const fecha = new Date().toLocaleString();
     const idPedido = generarIdPedido();
 
-    // Logo
+    
     try {
       doc.addImage(logoEmpresa, "PNG", 80, 5, 50, 20);
     } catch (e) {
       console.warn("No se pudo cargar el logo en el PDF:", e);
     }
 
-    // Encabezado
+    
     doc.setFontSize(16);
     doc.setFont("helvetica", "bold");
     doc.text("Recibo de Compra", 105, 35, { align: "center" });
@@ -41,7 +41,7 @@ export default function Carrito({
     doc.text(`Pedido: ${idPedido}`, 105, 42, { align: "center" });
     doc.text(`Fecha: ${fecha}`, 105, 49, { align: "center" });
 
-    // Tabla productos
+    
     const filas = carrito.map((p) => [
       p.nombre,
       p.cantidad,
@@ -61,7 +61,7 @@ export default function Carrito({
       tableWidth: "auto",
     });
 
-    // Total
+    
     const yTotal = doc.lastAutoTable.finalY + 10;
     doc.setFontSize(14);
     doc.setFont("helvetica", "bold");

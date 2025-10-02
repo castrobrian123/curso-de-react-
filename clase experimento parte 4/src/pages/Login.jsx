@@ -1,5 +1,5 @@
 
-// src/pages/Login.jsx
+//Login.jsx
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -26,26 +26,49 @@ export default function Login({ setIsAuthenticated, setUsuarioActivo }) {
     localStorage.setItem("isAuthenticated", "true");
     setUsuarioActivo && setUsuarioActivo(user);
     setIsAuthenticated && setIsAuthenticated(true);
-    // redirect to previous page or carrito/admin
-    navigate("/"); // o navigate("/carrito") si querés
+    navigate("/"); 
   };
 
   return (
-    <section style={{ padding: 20, maxWidth: 500, margin: "auto" }}>
+
+    <section className="Panel_De_Formulario_De_Contacto" >
+
       <h2>Iniciar sesión</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {error && <p className="error" >{error}</p>}
+
       <form onSubmit={handleLogin}>
-        <div>
+
+        <div className="contenedor_centrado">
+
           <label>Email</label>
           <input value={email} onChange={e => setEmail(e.target.value)} required />
+
         </div>
-        <div>
+
+        <div className="contenedor_centrado">
+
           <label>Contraseña</label>
           <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
+
         </div>
-        <button type="submit">Ingresar</button>
+
+        <div className="contenedor_centrado">
+          
+          <button type="submit" className="boton">Ingresar</button>
+
+        </div>
+
       </form>
-      <p>¿No tenés cuenta? <Link to="/register">Registrate</Link></p>
+
+      <div className="contenedor_centrado" >
+
+        <p>¿No tenés cuenta? <Link to="/register" className="boton" >Registrate</Link></p>
+
+      </div>
+
     </section>
+
   );
+
 }

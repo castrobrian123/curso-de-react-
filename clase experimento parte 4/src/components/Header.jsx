@@ -27,7 +27,7 @@ export default function Header({ carritoCount, toggleCarrito, isAuthenticated, u
     <header>
 
       <section className="barra_navegacion">
-        {/* Logo y nombre */}
+        
         <div className="Logo_De_Empresa">
 
           <img src={logoEmpresa} alt="Logo de la Empresa" />
@@ -35,7 +35,7 @@ export default function Header({ carritoCount, toggleCarrito, isAuthenticated, u
 
         </div>
 
-        {/* Menú principal */}
+        
         <nav className="menu_navegacion">
 
           <ul>
@@ -64,7 +64,7 @@ export default function Header({ carritoCount, toggleCarrito, isAuthenticated, u
 
         </nav>
 
-        {/* Acciones: carrito y sesión */}
+        
         <div className="acciones">
 
           <button id="boton-carrito" onClick={openCarrito}>
