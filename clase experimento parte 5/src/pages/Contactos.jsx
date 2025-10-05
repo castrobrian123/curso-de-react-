@@ -23,7 +23,7 @@ export default function Contactos() {
 
   const handleTipoChange = (e) => {
     setTipo(e.target.value);
-    // si cambia a consulta, limpiamos el campo puesto
+    
     if (e.target.value === "consulta") {
       setFormData({
         ...formData,
@@ -40,7 +40,7 @@ export default function Contactos() {
         ? "Solicitud de empleo enviada con éxito ✅"
         : "Consulta enviada con éxito ✅"
     );
-    // Aquí podrías enviar a tu backend con fetch/axios
+    
   };
 
   return (

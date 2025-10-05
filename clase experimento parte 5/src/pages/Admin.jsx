@@ -1,5 +1,5 @@
 
-// pages/Admin.jsx
+//Admin.jsx
 import { useState } from "react";
 
 export default function Admin({ API_URL, productos, setProductos, actualizarStock }) {
