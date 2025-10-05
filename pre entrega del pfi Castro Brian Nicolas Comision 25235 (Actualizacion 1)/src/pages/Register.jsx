@@ -38,7 +38,7 @@ export default function Register({ USERS_URL, setIsAuthenticated, setUsuarioActi
       setIsAuthenticated(true);
       setUsuarioActivo(usuarioCreado);
 
-      navigate("/");
+      navigate("/productos");
     } catch (err) {
       console.error("Error en registro:", err);
       alert("Error al conectarse al servidor");

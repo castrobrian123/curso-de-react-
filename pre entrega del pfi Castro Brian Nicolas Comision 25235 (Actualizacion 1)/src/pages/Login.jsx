@@ -24,7 +24,7 @@ export default function Login({ USERS_URL, setIsAuthenticated, setUsuarioActivo 
       setIsAuthenticated(true);
       setUsuarioActivo(usuario);
 
-      navigate("/");
+      navigate("/productos");
     } catch (err) {
       console.error("Error en login:", err);
       alert("Error al conectarse al servidor");
