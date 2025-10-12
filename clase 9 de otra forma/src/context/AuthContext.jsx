@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
     const userData = localStorage.getItem("usuario");
     if (token && userData) {
       setUsuario(JSON.parse(userData));
+      setPerfilVisible(true); // Mostrar perfil si ya había sesión
     }
   }, []);
 
@@ -31,6 +32,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("token", "fake-token");
         localStorage.setItem("usuario", JSON.stringify(user));
         setUsuario(user);
+        setPerfilVisible(true); // <-- activar perfil al login
         return { success: true, user };
       } else {
         return { success: false, message: "Usuario o contraseña incorrectos" };
@@ -45,16 +47,20 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("usuario");
     setUsuario(null);
+    setPerfilVisible(false); // <-- ocultar perfil al logout
   };
 
   const togglePerfil = () => setPerfilVisible(!perfilVisible);
 
   return (
-    <AuthContext.Provider value={ { usuario, login, logout, perfilVisible, togglePerfil } } >
+    <AuthContext.Provider
+      value={{ usuario, login, logout, perfilVisible, togglePerfil }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
+
 
 
 

@@ -1,20 +1,10 @@
+import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { CarritoContext } from "../context/CarritoContext";
-import { AuthContext } from "../context/AuthContext";
 import logoEmpresa from "../imagenes/logo de empresa.png";
-
-
 
 const Header = () => {
   const { carrito, toggleCarrito } = useContext(CarritoContext);
-  const { usuario, togglePerfil, logout } = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login"); // Redirige al login al cerrar sesión
-  };
 
   return (
     <header>
@@ -38,11 +28,9 @@ const Header = () => {
             <li>
               <Link to="/productos">Productos</Link>
             </li>
-            
-              <li>
-                <Link to="/login">Administración</Link>
-              </li>
-            
+            <li>
+              <Link to="/login">Administración</Link>
+            </li>
           </ul>
         </nav>
 
@@ -50,10 +38,6 @@ const Header = () => {
           <button onClick={toggleCarrito} id="boton-carrito">
             🛒 Carrito ({carrito.length})
           </button>
-
-          
-
-          
         </div>
       </section>
     </header>
@@ -61,3 +45,4 @@ const Header = () => {
 };
 
 export default Header;
+

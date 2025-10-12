@@ -4,7 +4,7 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
-  const [nombre, setNombre] = useState("");
+  const [username, setUsername] = useState(""); // <- renombrado para coincidir con MockAPI
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [cargando, setCargando] = useState(false);
@@ -18,11 +18,12 @@ const Login = () => {
     setError("");
     setCargando(true);
 
-    const result = await login(nombre, password);
+    // Llama al login del contexto
+    const result = await login(username, password);
     setCargando(false);
 
     if (result.success) {
-      // Si venía de una ruta protegida, redirige a ella
+      // Si venía de una ruta protegida, redirige a ella o al inicio
       const destino = location.state?.from?.pathname || "/";
       navigate(destino);
     } else {
@@ -39,8 +40,8 @@ const Login = () => {
           <input
             type="text"
             placeholder="Usuario"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
@@ -77,4 +78,5 @@ const Login = () => {
 };
 
 export default Login;
+
 

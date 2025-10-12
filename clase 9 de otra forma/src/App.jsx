@@ -45,7 +45,7 @@ function App() {
 
           <main id="contenedor-productos">
 
-            <PerfilFlotante />
+            
             <Routes>
               <Route path="/" element={<Inicio />} />
               <Route path="/inicio" element={<Inicio />} />
@@ -70,12 +70,15 @@ function App() {
 
 function FlotantesGlobales() {
   const { carritoVisible } = useContext(CarritoContext);
-  const { perfilVisible } = useContext(AuthContext);
+  const { usuario, perfilVisible, logout } = useContext(AuthContext);
+
 
   return (
     <>
       {carritoVisible && <CarritoFlotante />}
-      {perfilVisible && <PerfilFlotante  />}
+      { perfilVisible && usuario && (
+        <PerfilFlotante usuario={usuario} logout={logout}  />
+      )}
     </>
   );
 }
