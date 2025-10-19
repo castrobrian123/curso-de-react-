@@ -13,45 +13,50 @@ export default function CarritoFlotante() {
   return (
     <div className="modal-overlay">
       <div className="modal-carrito cards-mode">
-        <h3>🛒 Tu Carrito</h3>
         <button className="cerrar-modal" onClick={toggleCarrito}>
           ✖
         </button>
+        <h3>🛒 Tu Carrito</h3>
+
+        {carrito.length === 0 ? (
+          <p className="carrito-vacio">El carrito está vacío.</p>
+        ) : (
+          <ul className="lista-productos">
+            {carrito.map((producto) => (
+              <li key={producto.id} className="item-carrito">
+                <img
+                  src={producto.imagen}
+                  alt={producto.nombre}
+                  width="50"
+                  height="50"
+                />
+                <div className="info-producto">
+                  <p>{producto.nombre}</p>
+                  <p>
+                    {producto.cantidad} x ${producto.precio.toFixed(2)}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {carrito.length > 0 && (
+          <div className="carrito-footer">
+            <p>Total: ${total.toFixed(2)}</p>
+            <button className="vaciar" onClick={vaciarCarrito}>
+              Vaciar carrito
+            </button>
+          </div>
+        )}
+
       </div>
 
-      {carrito.length === 0 ? (
-        <p className="carrito-vacio">El carrito está vacío.</p>
-      ) : (
-        <ul className="lista-productos">
-          {carrito.map((producto) => (
-            <li key={producto.id} className="item-carrito">
-              <img
-                src={producto.imagen}
-                alt={producto.nombre}
-                width="50"
-                height="50"
-              />
-              <div className="info-producto">
-                <p>{producto.nombre}</p>
-                <p>
-                  {producto.cantidad} × ${producto.precio.toFixed(2)}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
 
-      {carrito.length > 0 && (
-        <div className="carrito-footer">
-          <p>Total: ${total.toFixed(2)}</p>
-          <button className="vaciar" onClick={vaciarCarrito}>
-            Vaciar carrito
-          </button>
-        </div>
-      )}
     </div>
+
   );
+
 }
 
 

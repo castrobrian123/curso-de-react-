@@ -1,33 +1,27 @@
 
 import { useState, useContext } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
-const Login = () => {
-  const [username, setUsername] = useState(""); // <- renombrado para coincidir con MockAPI
+const Login = ({ USERS_URL }) => {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [cargando, setCargando] = useState(false);
+  const [cargando, setCargando] = useState(false); 
 
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    setCargando(true);
-
-    // Llama al login del contexto
-    const result = await login(username, password);
+    setCargando(true); 
+    const success = await login(username, password, USERS_URL);
     setCargando(false);
 
-    if (result.success) {
-      // Si venía de una ruta protegida, redirige a ella o al inicio
-      const destino = location.state?.from?.pathname || "/";
-      navigate(destino);
+    if (success) {
+      navigate("/inicio");
     } else {
-      setError(result.message || "Error al iniciar sesión");
+      setError("Usuario o contraseña incorrectos");
     }
   };
 
@@ -78,5 +72,6 @@ const Login = () => {
 };
 
 export default Login;
+
 
 

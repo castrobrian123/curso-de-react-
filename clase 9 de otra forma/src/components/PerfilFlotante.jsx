@@ -1,31 +1,42 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
-
-export default function PerfilFlotante() {
-  const { usuario, logout, togglePerfil } = useContext(AuthContext);
+export default function PerfilFlotante({ usuario, onLogout }) {
+  const { togglePerfil } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   if (!usuario) return null;
+
+  const handleLogout = () => {
+    onLogout();
+    navigate("/login");
+  };
 
   return (
     <div className="perfil-flotante">
       <div className="perfil-contenido">
-        <h4>👤 Perfil</h4>
-        <p><strong>Usuario:</strong> {usuario.username}</p>
-        <p><strong>Email:</strong> {usuario.email}</p>
-
-        <div className="botones-perfil">
-          <button className="boton-cerrar" onClick={logout}>
-            Cerrar Sesión
-          </button>
-          <button className="boton-cerrar" onClick={togglePerfil}>
-            Ocultar Perfil
-          </button>
-        </div>
+        <img
+        src={usuario.imagen}
+        alt={usuario.username}
+        style={{
+          width: "80px",
+          height: "80px",
+          borderRadius: "50%",
+          display: "block",
+          margin: "0 auto 10px auto"
+        }}
+      />
+        <h3>{usuario.username}</h3>
+        <p><strong>Correo:</strong> {usuario.email}</p>
+        <button onClick={handleLogout}> Cerrar sesión </button>
       </div>
     </div>
   );
 }
+
+
+
 
 
 

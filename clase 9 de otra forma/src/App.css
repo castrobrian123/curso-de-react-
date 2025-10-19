@@ -574,6 +574,14 @@ h3 {
   border-radius: 5px;
 }
 
+.admin-form textarea {
+    padding: 8px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 2px solid red;
+  border-radius: 5px;
+}
+
 .admin-form button {
   padding: 8px 12px;
   border: none;
@@ -744,7 +752,7 @@ h3 {
 
 .perfil-flotante {
   position: fixed;
-  top: 780px;
+  bottom: 10px;
   left: 20px;
   background: white;
   border: 2px solid #333;
@@ -776,4 +784,14 @@ h3 {
 
 .perfil-flotante button:hover {
   background: #e74c3c;
+}
+
+.descripcion-de-producto{
+    background: white;
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 9999;
+  min-width: 200px;
 }
