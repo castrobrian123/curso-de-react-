@@ -486,7 +486,23 @@ h3 {
     flex-direction: column; 
     gap: 8px;
   }
+  .modal-overlay {
+    padding: 0; /* Evita que se salga del borde */
+    align-items: flex-start; /* Hace que se vea más natural en vertical */
+  }
 
+  .modal-carrito {
+    width: 95%;
+    max-width: none;
+    height: 90vh; /* más cómodo para móvil */
+    overflow-y: auto;
+    border-radius: 10px;
+    margin-top: 30px;
+  }
+
+  .productos-cards {
+    max-height: 60vh; /* evita que tape los botones de abajo */
+  }
 }
 
 
@@ -752,25 +768,36 @@ h3 {
 
 .perfil-flotante {
   position: fixed;
-  bottom: 10px;
+  bottom: 15px;
   left: 20px;
   background: white;
-  border: 2px solid #333;
+  padding: 10px 15px;
   border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  z-index: 9999;
-  min-width: 200px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  z-index: 900; /* menor que el modal del carrito */
+  transition: all 0.3s ease;
+
+  border: 2px solid #333;
 }
 
-.perfil-flotante h4 {
-  margin: 0 0 10px;
+.perfil-flotante h3 {
+  margin: 0 0 0 0px;
   font-size: 16px;
 }
 
 .perfil-flotante p {
-  margin: 5px 0;
+  margin: 0 0 0 0px;
   font-size: 14px;
+}
+
+.perfil-flotante img {
+    width: 60px;
+    height: 60px;
+  border-radius: 50%;
 }
 
 .perfil-flotante button {
@@ -780,6 +807,7 @@ h3 {
   padding: 6px 10px;
   border-radius: 6px;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .perfil-flotante button:hover {

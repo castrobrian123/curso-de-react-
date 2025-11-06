@@ -17,22 +17,12 @@ export default function PerfilFlotante({ usuario, onLogout }) {
 
   return (
     <div className="perfil-flotante">
-      <div className="perfil-contenido">
         <img
         src={usuario.imagen}
-        alt={usuario.username}
-        style={{
-          width: "80px",
-          height: "80px",
-          borderRadius: "50%",
-          display: "block",
-          margin: "0 auto 10px auto"
-        }}
-      />
+        alt={usuario.username} />
         <h3> <FaUser /> {usuario.username}</h3>
-        <p><strong> <FaEnvelope style={{ marginRight: "5px" }} /> Correo:</strong> {usuario.email}</p>
-        <button onClick={handleLogout}> <FaSignOutAlt style={{ marginRight: "5px" }} /> Cerrar sesión </button>
-      </div>
+        <p><strong> <FaEnvelope  /> Correo:</strong> {usuario.email}</p>
+        <button onClick={handleLogout}> <FaSignOutAlt  /> Cerrar sesión </button>
     </div>
   );
 }
