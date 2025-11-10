@@ -1,6 +1,9 @@
-// ListaDeProductos.jsx
+
 import { Link } from "react-router-dom";
 import CategoriasDeProductos from "./CategoriaDeProductos";
+import CarouselDeImagenes from "./CarouselDeImagenes";
+import CarouselDeVideos from "./CarouselDeVideos";
+import videosData from "./data/videos.json";
 import { useContext } from "react";
 import { CarritoContext } from "../context/CarritoContext";
 
@@ -20,6 +23,7 @@ export default function ListaDeProductos({ productos }) {
 
   return (
     <div>
+      <CarouselDeImagenes/>
       <CategoriasDeProductos />
       {Object.keys(categorias).map(categoria => (
         <section key={categoria} id={categoria} className="Panel_De_Publicacion_De_Productos">
@@ -57,6 +61,7 @@ export default function ListaDeProductos({ productos }) {
           </div>
         </section>
       ))}
+      <CarouselDeVideos videos={videosData} autoPlay={true}  />
     </div>
   );
 }

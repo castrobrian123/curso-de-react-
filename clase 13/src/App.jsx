@@ -80,7 +80,7 @@ function App() {
 
             <Header />
 
-            <main id="contenedor-productos">
+            <main>
               <Routes>
                 <Route path="/" element={<Inicio />} />
                 <Route path="/inicio" element={<Inicio />} />

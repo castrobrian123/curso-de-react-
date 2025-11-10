@@ -46,7 +46,7 @@ footer {
     color: white;
     font-weight: bold;
     margin: 0;
-    font-size: 1.8em;
+    font-size: 1.2em;
 }
 
 .contenedor_centrado {
@@ -113,7 +113,7 @@ a {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 
 .boton {
@@ -127,6 +127,25 @@ a {
 
 .boton:hover {
     background-color: darkorange;
+}
+
+
+.hamburguesa {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.4em;
+  cursor: pointer;
+  
+}
+
+.menu_navegacion ul {
+  display: flex;
+  gap: 3em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 section {
@@ -333,6 +352,45 @@ h3 {
   font-weight: bold;
 }
 
+@media (max-width: 966px){
+    .hamburguesa {
+        display: block;
+    }
+
+    .menu_navegacion {
+      
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background-color: darkcyan;
+      flex-direction: column;
+      align-items: center;
+      display: none;
+      padding: 20px 0;
+      z-index: 999;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .menu_navegacion.activo {
+      display: flex;
+    }
+
+    .menu_navegacion ul {
+      flex-direction: column;
+      gap: 0px;
+    }
+
+  .menu_navegacion a {
+    color: white !important;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .menu_navegacion a:hover {
+    color: gold !important;
+  }
+}
+
 
 @media (max-width: 768px){
     
@@ -363,6 +421,8 @@ h3 {
         flex-direction: column;
         gap: 10px;
     }
+
+
 
     #boton-carrito {
         bottom: 10px;
@@ -448,6 +508,8 @@ h3 {
         flex-direction: column;
         gap: 10px;
     }
+
+
     
     .acciones-carrito button {
         font-size: 0.9rem;
@@ -487,21 +549,21 @@ h3 {
     gap: 8px;
   }
   .modal-overlay {
-    padding: 0; /* Evita que se salga del borde */
-    align-items: flex-start; /* Hace que se vea más natural en vertical */
+    padding: 0; 
+    align-items: flex-start; 
   }
 
   .modal-carrito {
     width: 95%;
     max-width: none;
-    height: 90vh; /* más cómodo para móvil */
+    height: 90vh; 
     overflow-y: auto;
     border-radius: 10px;
     margin-top: 30px;
   }
 
   .productos-cards {
-    max-height: 60vh; /* evita que tape los botones de abajo */
+    max-height: 60vh; 
   }
 }
 
@@ -778,7 +840,7 @@ h3 {
   flex-direction: column;
   align-items: center;
   
-  z-index: 900; /* menor que el modal del carrito */
+  z-index: 900; 
   transition: all 0.3s ease;
 
   border: 2px solid #333;
@@ -823,3 +885,218 @@ h3 {
   z-index: 9999;
   min-width: 200px;
 }
+
+.carousel-imagenes-contenedor {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 200px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+  
+  
+}
+
+.carousel-imagenes-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.carousel-imagenes-foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-imagenes-titulo {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 6px 0;
+}
+
+/* Flechas laterales */
+.carousel-imagenes-boton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+  border-radius: 50%;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: background-color 0.3s;
+  z-index: 10;
+}
+
+.carousel-imagenes-boton:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.carousel-imagenes-boton.izquierda {
+  left: 15px;
+}
+
+.carousel-imagenes-boton.derecha {
+  right: 15px;
+}
+
+/* Indicadores inferiores */
+.carousel-imagenes-indicadores {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.carousel-imagenes-indicador {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.carousel-imagenes-indicador:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.carousel-imagenes-indicador.activo {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+/* Animaciones */
+.salidaDeImagen {
+  animation: imagenSlideOut 0.4s forwards ease-in;
+}
+.entradaDeImagen {
+  animation: imagenSlideIn 0.4s forwards ease-out;
+}
+
+@keyframes imagenSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes imagenSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carousel-imagenes-contenedor {
+    height: 300px;
+  }
+
+  .carousel-imagenes-titulo {
+    font-size: 1rem;
+    padding: 5px 0;
+  }
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 30px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.carousel-slide {
+  width: 100%;
+  text-align: center;
+  transition: transform 0.4s ease-in-out;
+}
+
+.carousel-slide iframe {
+  width: 100%;
+  height: 450px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.video-titulo {
+  
+  font-weight: 600;
+  color: #333;
+}
+
+/* Animaciones del efecto slide */
+.salida {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.entrada {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Botones de navegación */
+.carousel-btn {
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 12px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background 0.3s;
+  z-index: 2;
+}
+
+.carousel-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.izquierda {
+  left: 10px;
+}
+
+.derecha {
+  right: 10px;
+}
+
+/* Adaptabilidad */
+@media (max-width: 600px) {
+  .carousel-slide iframe {
+    height: 240px;
+  }
+}
+
+
