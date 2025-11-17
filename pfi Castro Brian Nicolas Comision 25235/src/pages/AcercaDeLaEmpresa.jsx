@@ -1,7 +1,10 @@
 
+import CarouselDeImagenes from "../components/CarouselDeImagenes";
+
 export default function AcercaDeLaEmpresa() {
   return (
     <div>
+      <CarouselDeImagenes />
       <section className="Panel_De_Publicacion">
         <h2>Acerca de la Empresa</h2>
         <p>

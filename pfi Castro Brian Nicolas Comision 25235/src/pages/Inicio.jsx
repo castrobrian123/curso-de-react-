@@ -1,12 +1,15 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-
+import CarouselDeImagenes from "../components/CarouselDeImagenes";
+import CarouselDeVideos from "../components/CarouselDeVideos";
+import videosData from "../components/data/videos.json";
 import { FaBullseye, FaEye, FaUsers, FaUserTie, FaChalkboardTeacher, FaCommentDots } from "react-icons/fa";
 
 export default function Inicio() {
     return (
     <div>
+        <CarouselDeImagenes />
         <section className="Panel_De_Publicacion">
 
             <h2> <FaBullseye /> Nuestro Compromiso</h2>
@@ -112,6 +115,7 @@ export default function Inicio() {
             </div>
 
         </section>
+        <CarouselDeVideos videos={videosData} autoPlay={true}  />
     </div>
   );
 }

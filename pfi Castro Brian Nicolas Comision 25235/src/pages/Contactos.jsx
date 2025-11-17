@@ -1,11 +1,9 @@
 
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import { toast } from 'react-toastify';
-
 import { FaPaperPlane, FaTimesCircle } from "react-icons/fa";
+import CarouselDeImagenes from "../components/CarouselDeImagenes";
 
 export default function Contactos() {
   const [tipo, setTipo] = useState("consulta");
@@ -40,19 +38,18 @@ export default function Contactos() {
     e.preventDefault();
     console.log("Datos enviados:", { tipo, ...formData });
     
-    // Reemplazo de alert() por toast
     if (tipo === "empleo") {
       toast.success("✅ Solicitud de empleo enviada con éxito.", { autoClose: 3000 });
     } else {
       toast.success("✅ Consulta enviada con éxito.", { autoClose: 3000 });
     }
     
-    // Se podría resetear el formulario aquí
     setFormData({ nombre: "", correo: "", telefono: "", puesto: "", mensaje: "" });
   };
 
   return (
     <section className="Panel_De_Formulario_De_Contacto">
+      <CarouselDeImagenes />
       <h2>Formulario de Contacto</h2>
 
       <form className="Formulario_De_Contacto" onSubmit={handleSubmit}>
