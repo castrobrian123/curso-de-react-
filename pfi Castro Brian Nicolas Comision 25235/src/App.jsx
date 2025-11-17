@@ -12,14 +12,19 @@ import AcercaDeLaEmpresa from "./pages/AcercaDeLaEmpresa";
 import Contactos from "./pages/Contactos";
 import Login from "./pages/Login";
 import Register from "./pages/Register"
-import CarritoFlotante from "./pages/CarritoFlotante";
 import PerfilFlotante from "./components/PerfilFlotante";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Admin from "./pages/Admin";
 
 import "./App.css";
 
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+import { Helmet, HelmetProvider } from "react-helmet-async";
+
 function App() {
+  
   const API_URL = "https://68d87e112144ea3f6da833c6.mockapi.io/ListaDeProductos";
   const USERS_URL = "https://68d87e112144ea3f6da833c6.mockapi.io/ListaDeUsuarios";
 
@@ -59,39 +64,54 @@ function App() {
 
   return (
 
-    <AuthProvider>
+    <HelmetProvider>
+      
+      <AuthProvider>
 
-      <CarritoProvider productos={productos} actualizarStock={actualizarStock}>
+        <CarritoProvider productos={productos} actualizarStock={actualizarStock}>
 
-        <Router>
+          
+          <Helmet>
 
-          <Header />
+            <title>Changolandia</title>
 
-          <main id="contenedor-productos">
-            <Routes>
-              <Route path="/" element={<Inicio />} />
-              <Route path="/inicio" element={<Inicio />} />
-              <Route path="/productos" element={ <ListaDeProductos productos={productos} cargando={cargando} /> } />
-              <Route path="/productos/:id" element={<ProductoDetalle productos={productos} />} />
-              <Route path="/carrito" element={ <ProtectedRoute> <CarritoFlotante /> </ProtectedRoute> } />
-              <Route path="/acerca" element={<AcercaDeLaEmpresa />} />
-              <Route path="/contactos" element={<Contactos />} />
-              <Route path="/login" element={<Login USERS_URL={USERS_URL} />} />
-              <Route path="/register" element={<Register USERS_URL={USERS_URL} />} />
+          </Helmet>
 
-              <Route path="/admin" element={ <ProtectedRoute> <Admin API_URL={API_URL} productos={productos} setProductos={setProductos} actualizarStock={actualizarStock} /> </ProtectedRoute> } />
-            </Routes>
-          </main>
+          <Router>
 
-          <FlotantesGlobales />
+            <Header />
 
-          <Footer />
+            <main>
+              <Routes>
+                <Route path="/" element={<Inicio />} />
+                <Route path="/inicio" element={<Inicio />} />
+                <Route path="/productos" element={ <ListaDeProductos productos={productos} cargando={cargando} /> } />
+                <Route path="/productos/:id" element={<ProductoDetalle productos={productos} />} />
+                
+                <Route path="/acerca" element={<AcercaDeLaEmpresa />} />
+                <Route path="/contactos" element={<Contactos />} />
+                <Route path="/login" element={<Login USERS_URL={USERS_URL} />} />
+                <Route path="/register" element={<Register USERS_URL={USERS_URL} />} />
 
-        </Router>
+                <Route path="/admin" element={ <ProtectedRoute> <Admin API_URL={API_URL} productos={productos} setProductos={setProductos} actualizarStock={actualizarStock} /> </ProtectedRoute> } />
+              </Routes>
+            </main>
 
-      </CarritoProvider>
+            <FlotantesGlobales />
 
-    </AuthProvider>
+            <Footer />
+
+          </Router>
+
+          <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
+
+        </CarritoProvider>
+
+      </AuthProvider>
+
+    </HelmetProvider>
+
+
   );
   
 }
@@ -111,17 +131,4 @@ function FlotantesGlobales() {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
 

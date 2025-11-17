@@ -1,0 +1,29 @@
+{
+  "imagenes": [
+    {
+      "titulo": "Imagen 1",
+      "alt": "Imagen 1",
+      "url": "https://www.sarandi690.com.uy/wp-content/uploads/2022/08/Yoguirisimo.png"
+    },
+    {
+      "titulo": "Imagen 2",
+      "alt": "Imagen 2",
+      "url": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/64fcb2118412759.608894fba62aa.png"
+    },
+    {
+      "titulo": "Imagen 3",
+      "alt": "Imagen 3",
+      "url": "https://farandulayeventos.com/wp-content/uploads/2023/03/sprite02.jpg"
+    },
+    {
+      "titulo": "Imagen 4",
+      "alt": "Imagen 4",
+      "url": "https://drive.google.com/file/d/13uJuVWVxMurCFHFAUrv-cIZBMC9zAelD/view?usp=sharing"
+    }
+  ]
+}
+
+
+
+
+

@@ -4,6 +4,9 @@ import logoEmpresa from "../imagenes/logo de empresa.png";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 
+import { toast } from 'react-toastify';
+
+import { FaTrash, FaPlus, FaMinus, FaShoppingBag, FaTimes } from "react-icons/fa";
 
 export const CarritoContext = createContext();
 
@@ -12,17 +15,22 @@ export const CarritoProvider = ({ children, productos, actualizarStock }) => {
   const [carritoVisible, setCarritoVisible] = useState(false);
 
   
-  const añadirAlCarrito = (productoId) => {
+const añadirAlCarrito = (productoId) => {
     const producto = productos.find(p => p.id === productoId);
-    if (!producto || producto.stock <= 0) return alert("No hay stock disponible");
+    if (!producto || producto.stock <= 0) {
+      toast.warn("🚫 ¡Stock agotado!", { autoClose: 2000 });
+      return;
+    }
 
     setCarrito(prev => {
       const existe = prev.find(p => p.id === productoId);
       if (existe) {
+        toast.info(`Uno más de ${producto.nombre} añadido al carrito.`, { autoClose: 1500 });
         return prev.map(p =>
           p.id === productoId ? { ...p, cantidad: p.cantidad + 1 } : p
         );
       }
+      toast.success(`Producto ${producto.nombre} añadido.`, { autoClose: 1500 });
       return [...prev, { ...producto, cantidad: 1 }];
     });
 
@@ -32,14 +40,17 @@ export const CarritoProvider = ({ children, productos, actualizarStock }) => {
   
   const aumentarCantidad = (productoId) => {
     const producto = productos.find(p => p.id === productoId);
-    if (!producto || producto.stock <= 0) return alert("No hay más stock disponible");
+    if (!producto || producto.stock <= 0) {
+      toast.warn("🚫 No hay más stock disponible.", { autoClose: 2000 });
+      return;
+    }
 
     setCarrito(prev =>
       prev.map(p =>
         p.id === productoId ? { ...p, cantidad: p.cantidad + 1 } : p
       )
     );
-
+    toast.info(`+1 de ${producto.nombre}.`, { autoClose: 1000 });
     actualizarStock(productoId, producto.stock - 1);
   };
 
@@ -56,6 +67,7 @@ export const CarritoProvider = ({ children, productos, actualizarStock }) => {
 
     const producto = productos.find(p => p.id === productoId);
     actualizarStock(productoId, producto.stock + 1);
+    toast.info(`-1 de ${producto.nombre}.`, { autoClose: 1000 });
   };
 
   
@@ -67,6 +79,7 @@ export const CarritoProvider = ({ children, productos, actualizarStock }) => {
     actualizarStock(productoId, producto.stock + item.cantidad);
 
     setCarrito(prev => prev.filter(p => p.id !== productoId));
+    toast.error(`🗑️ Producto ${producto.nombre} eliminado.`, { autoClose: 1500 });
   };
 
   
@@ -76,6 +89,7 @@ export const CarritoProvider = ({ children, productos, actualizarStock }) => {
       actualizarStock(item.id, producto.stock + item.cantidad);
     });
     setCarrito([]);
+    toast.error("🗑️ Carrito vaciado.", { autoClose: 2000 });
   };
 
   
@@ -83,7 +97,10 @@ export const CarritoProvider = ({ children, productos, actualizarStock }) => {
 
   
   const generarPDF = () => {
-    if (carrito.length === 0) return alert("El carrito está vacío");
+    if (carrito.length === 0) {
+        toast.warn("El carrito está vacío para generar un PDF.");
+        return;
+    }
 
     const doc = new jsPDF("p", "mm", "a4");
     const fecha = new Date().toLocaleString();
@@ -127,8 +144,11 @@ export const CarritoProvider = ({ children, productos, actualizarStock }) => {
   };
 
   const compraConfirmada = () => {
-    if (carrito.length === 0) return alert("El carrito está vacío");
-    alert("¡Compra confirmada! Se generó su ticket en PDF.");
+    if (carrito.length === 0) {
+      toast.warn("🛒 El carrito está vacío.", { autoClose: 2000 });
+      return;
+    }
+    toast.success("🎉 ¡Compra confirmada! Se generó su ticket en PDF.", { autoClose: 5000 });
     generarPDF();
     vaciarCarrito();
     setCarritoVisible(false);
@@ -155,8 +175,8 @@ export const CarritoProvider = ({ children, productos, actualizarStock }) => {
             className="modal-carrito cards-mode"
             onClick={(e) => e.stopPropagation()}
           >
-            <button className="cerrar-modal" onClick={toggleCarrito}>X</button>
-            <h2 className="carrito-titulo">Carrito de Compras</h2>
+            <button className="cerrar-modal" onClick={toggleCarrito}> <FaTimes /> </button>
+            <h2 className="carrito-titulo"> <FaShoppingBag style={{ marginRight: "10px" }} /> Carrito de Compras</h2>
 
             {carrito.length === 0 ? (
               <p className="carrito-vacio">El carrito está vacío</p>
@@ -176,19 +196,19 @@ export const CarritoProvider = ({ children, productos, actualizarStock }) => {
                         className="btn-agregar"
                         onClick={() => aumentarCantidad(p.id)}
                       >
-                        +
+                        <FaPlus />
                       </button>
                       <button
                         className="btn-eliminar"
                         onClick={() => disminuirCantidad(p.id)}
                       >
-                        -
+                        <FaMinus />
                       </button>
                       <button
                         className="btn-eliminar"
                         onClick={() => eliminarDelCarrito(p.id)}
                       >
-                        Eliminar
+                        <FaTrash /> Eliminar
                       </button>
                     </div>
                   </div>
@@ -208,10 +228,10 @@ export const CarritoProvider = ({ children, productos, actualizarStock }) => {
 
             <div className="acciones-carrito">
               <button className="btn-eliminar" onClick={vaciarCarrito}>
-                Vaciar carrito
+                <FaTrash style={{ marginRight: "5px" }} /> Vaciar carrito
               </button>
               <button className="btn-agregar" onClick={compraConfirmada}>
-                Confirmar compra
+                <FaShoppingBag style={{ marginRight: "5px" }} /> Confirmar compra
               </button>
             </div>
           </div>

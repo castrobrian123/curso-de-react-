@@ -3,6 +3,10 @@ import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
+import { toast } from 'react-toastify';
+
+import { FaSignInAlt, FaUserPlus } from "react-icons/fa";
+
 const Login = ({ USERS_URL }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -14,14 +18,16 @@ const Login = ({ USERS_URL }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setCargando(true); 
+    setCargando(true);
     const success = await login(username, password, USERS_URL);
     setCargando(false);
 
     if (success) {
+      toast.success(`👋 ¡Bienvenido de nuevo, ${username}!`, { autoClose: 2000 });
       navigate("/inicio");
     } else {
-      setError("Usuario o contraseña incorrectos");
+      // Reemplazo de setError con toast.error
+      toast.error("❌ Usuario o contraseña incorrectos", { autoClose: 3000 });
     }
   };
 
@@ -63,7 +69,7 @@ const Login = ({ USERS_URL }) => {
         <p>
           ¿No tenés cuenta?{" "}
           <Link to="/register" className="boton">
-            Registrate
+            <FaUserPlus style={{ marginRight: "5px" }} /> Registrate
           </Link>
         </p>
       </div>

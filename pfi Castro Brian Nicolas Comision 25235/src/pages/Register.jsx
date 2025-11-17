@@ -2,6 +2,11 @@ import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
+
+import { toast } from 'react-toastify';
+
+import { FaUserPlus, FaSignInAlt } from "react-icons/fa";
+
 export default function Register({ USERS_URL }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,30 +17,33 @@ export default function Register({ USERS_URL }) {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setError("");
-
+    
     const nombreNormalizado = username.trim();
 
     if (!nombreNormalizado || !password) {
-      return setError("Todos los campos son obligatorios.");
+      toast.error("Todos los campos son obligatorios.");
+      return;
     }
 
     if (password.length < 4) {
-      return setError("La contraseña debe tener al menos 4 caracteres.");
+      toast.error("La contraseña debe tener al menos 4 caracteres.");
+      return;
     }
 
     try {
-      
+      // ... (Validación de usuario existente y creación - sin cambios) ...
+
+      // Validación de usuario existente
       const res = await fetch(USERS_URL);
       const usuarios = await res.json();
 
-      
       if (usuarios.some(u => u.username?.trim() === nombreNormalizado)) {
-        return setError("El usuario ya está registrado.");
+        toast.error("El usuario ya está registrado.");
+        return;
       }
 
-      
-      const nuevoUsuario = { username: nombreNormalizado, password };
+      // Creación de usuario
+      const nuevoUsuario = { username: nombreNormalizado, password, email: "" }; // Se podría agregar email
       const createRes = await fetch(USERS_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -45,14 +53,15 @@ export default function Register({ USERS_URL }) {
       if (!createRes.ok) throw new Error("Error al crear el usuario");
 
       const usuarioCreado = await createRes.json();
-
       
       loginUsuarioDirecto(usuarioCreado);
-
+      toast.success(`🎉 ¡Registro exitoso! Bienvenido, ${nombreNormalizado}.`, { autoClose: 2000 });
+      
       navigate("/productos");
+
     } catch (err) {
       console.error("Error en registro:", err);
-      setError("Error al conectarse al servidor.");
+      toast.error("❌ Error al conectarse al servidor.");
     }
   };
 
@@ -84,13 +93,13 @@ export default function Register({ USERS_URL }) {
         {error && <p className="mensaje-error">{error}</p>}
 
         <div className="contenedor_centrado">
-          <button type="submit" className="boton">Registrarse</button>
+          <button type="submit" className="boton"> <FaUserPlus style={{ marginRight: "5px" }} /> Registrarse</button>
         </div>
       </form>
 
       <div className="contenedor_centrado">
         <p>
-          ¿Ya tenés cuenta? <Link to="/login" className="boton">Iniciá sesión</Link>
+          ¿Ya tenés cuenta? <Link to="/login" className="boton"> <FaSignInAlt style={{ marginRight: "5px" }} /> Iniciá sesión</Link>
         </p>
       </div>
     </section>

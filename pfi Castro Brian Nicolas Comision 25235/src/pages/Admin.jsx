@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+import { toast } from 'react-toastify';
+
+import { FaPlus, FaSave, FaEdit, FaTrash, FaUndo, FaUpload } from "react-icons/fa";
+
 export default function Admin({ API_URL, productos, setProductos, actualizarStock }) {
   const [nuevoProducto, setNuevoProducto] = useState({
     categoria: "",
@@ -49,13 +53,15 @@ export default function Admin({ API_URL, productos, setProductos, actualizarStoc
 
     if (Object.keys(nuevosErrores).length > 0) {
       setErrores(nuevosErrores);
+      toast.error("❌ Hay errores en el formulario.", { autoClose: 2000 });
       return;
     }
 
     setCargando(true);
-    setMensaje(null);
+    // setMensaje(null); // Ya no se usa
 
     try {
+      // ... (Llamada POST a la API - sin cambios)
       const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -71,20 +77,15 @@ export default function Admin({ API_URL, productos, setProductos, actualizarStoc
       const data = await res.json();
       setProductos([...productos, data]);
       setNuevoProducto({
-        categoria: "",
-        nombre: "",
-        precio: "",
-        imagen: "",
-        stock: "",
-        descripcion: "",
+        categoria: "", nombre: "", precio: "", imagen: "", stock: "", descripcion: "",
       });
 
-      setMensaje({ tipo: "exito", texto: "✅ Producto agregado correctamente." });
+      toast.success("✅ Producto agregado correctamente.");
     } catch (error) {
-      setMensaje({ tipo: "error", texto: "❌ Error al guardar el producto." });
+      console.error(error);
+      toast.error("❌ Error al guardar el producto.");
     } finally {
       setCargando(false);
-      limpiarMensajes();
     }
   };
 
@@ -99,10 +100,12 @@ export default function Admin({ API_URL, productos, setProductos, actualizarStoc
     const nuevosErrores = validar(productoEditado);
     if (Object.keys(nuevosErrores).length > 0) {
       setErrores(nuevosErrores);
+      toast.error("❌ Hay errores de validación en la edición.");
       return;
     }
 
     try {
+      // ... (Llamada PUT a la API - sin cambios)
       const res = await fetch(`${API_URL}/${productoEditado.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -119,11 +122,10 @@ export default function Admin({ API_URL, productos, setProductos, actualizarStoc
       setProductos(productos.map((p) => (p.id === data.id ? data : p)));
       setEditandoId(null);
       setProductoEditado({});
-      setMensaje({ tipo: "exito", texto: "✅ Producto actualizado correctamente." });
+      toast.success("✅ Producto actualizado correctamente.");
     } catch (error) {
-      setMensaje({ tipo: "error", texto: "❌ Error al actualizar el producto." });
-    } finally {
-      limpiarMensajes();
+      console.error(error);
+      toast.error("❌ Error al actualizar el producto.");
     }
   };
 
@@ -133,11 +135,10 @@ export default function Admin({ API_URL, productos, setProductos, actualizarStoc
     try {
       await fetch(`${API_URL}/${id}`, { method: "DELETE" });
       setProductos(productos.filter((p) => p.id !== id));
-      setMensaje({ tipo: "exito", texto: "🗑️ Producto eliminado correctamente." });
+      toast.error("🗑️ Producto eliminado correctamente.");
     } catch (error) {
-      setMensaje({ tipo: "error", texto: "❌ Error al eliminar producto." });
-    } finally {
-      limpiarMensajes();
+      console.error(error);
+      toast.error("❌ Error al eliminar producto.");
     }
   };
 
@@ -146,8 +147,7 @@ export default function Admin({ API_URL, productos, setProductos, actualizarStoc
     const producto = productos.find((p) => p.id === id);
     if (!producto) return;
     actualizarStock(id, producto.stock + 1);
-    setMensaje({ tipo: "exito", texto: `Stock de "${producto.nombre}" aumentado.` });
-    limpiarMensajes();
+    toast.info(`➕ Stock de "${producto.nombre}" aumentado.`, { autoClose: 1500 });
   };
 
   
@@ -156,7 +156,7 @@ export default function Admin({ API_URL, productos, setProductos, actualizarStoc
       <h2>Panel de Administración</h2>
 
       <form onSubmit={handleAgregarProducto} className="admin-form">
-        <h3>Agregar nuevo producto</h3>
+        <h3>Agregar nuevo producto <FaPlus style={{ marginRight: "5px" }} /> </h3>
 
         <input
           name="categoria"
@@ -263,12 +263,12 @@ export default function Admin({ API_URL, productos, setProductos, actualizarStoc
       </td>
               <td>
                 {editandoId === p.id ? (
-                  <button onClick={guardarEdicion} className="button-save">Guardar</button>
+                  <button onClick={guardarEdicion} className="button-save"> <FaSave /> Guardar</button>
                 ) : (
                   <>
-                    <button onClick={() => handleReponerStock(p.id)} className="button-stock">+ Stock</button>
-                    <button onClick={() => activarEdicion(p)} className="button-edit">Editar</button>
-                    <button onClick={() => handleEliminar(p.id)} className="button-delete">Eliminar</button>
+                    <button onClick={() => handleReponerStock(p.id)} className="button-stock"> + Stock</button>
+                    <button onClick={() => activarEdicion(p)} className="button-edit"> <FaEdit /> Editar</button>
+                    <button onClick={() => handleEliminar(p.id)} className="button-delete"> <FaTrash /> Eliminar</button>
                   </>
                 )}
               </td>

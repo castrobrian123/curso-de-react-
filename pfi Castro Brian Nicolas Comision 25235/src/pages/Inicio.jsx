@@ -2,17 +2,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { FaBullseye, FaEye, FaUsers, FaUserTie, FaChalkboardTeacher, FaCommentDots } from "react-icons/fa";
+
 export default function Inicio() {
     return (
     <div>
         <section className="Panel_De_Publicacion">
 
-            <h2>Nuestro Compromiso</h2>
+            <h2> <FaBullseye /> Nuestro Compromiso</h2>
 
             <div className="Seccion_De_Publicacion">
 
                 <div className="La_Publicacion">
-                    <h3>Misión</h3>
+                    <h3> <FaBullseye /> Misión</h3>
                     <p>
                     Brindar a nuestros clientes una experiencia de compra accesible,
                     conveniente y confiable, ofreciendo productos de calidad a precios
@@ -22,7 +24,7 @@ export default function Inicio() {
                 </div>
 
                 <div className="La_Publicacion">
-                    <h3>Visión</h3>
+                    <h3> <FaEye /> Visión</h3>
                     <p>
                     Ser el supermercado de referencia en nuestra región por nuestra
                     innovación, compromiso social y excelencia en el servicio, creando
@@ -37,12 +39,12 @@ export default function Inicio() {
 
         <section className="Panel_De_Publicacion">
 
-            <h2>Proyectos en curso</h2>
+            <h2> <FaUsers /> Proyectos en curso</h2>
 
             <div className="Seccion_De_Publicacion">
 
                 <div className="La_Publicacion">
-                    <h3>Forma parte de la comunidad</h3>
+                    <h3> <FaUsers /> Forma parte de la comunidad</h3>
                     <p>
                     Tu trabajo contribuye diariamente a mejorar la vida de vecinos y
                     familias.
@@ -55,7 +57,7 @@ export default function Inicio() {
                 </div>
 
                 <div className="La_Publicacion">
-                    <h3>Tu rol dentro del trabajo importa</h3>
+                    <h3> <FaUserTie /> Tu rol dentro del trabajo importa</h3>
                     <p>
                     Cada rol tiene impacto. Asumirlo con rigor define la cultura de
                     toda la organización.
@@ -68,7 +70,7 @@ export default function Inicio() {
                 </div>
 
                 <div className="La_Publicacion">
-                    <h3>La capacitación es una responsabilidad compartida</h3>
+                    <h3> <FaChalkboardTeacher /> La capacitación es una responsabilidad compartida</h3>
                     <p>
                     Es un compromiso que asumimos como equipo. Lo que requiere
                     atención, disposición y respeto por los procesos aprendidos.
@@ -86,7 +88,7 @@ export default function Inicio() {
 
         <section className="Panel_De_Publicacion">
 
-            <h2>Comentarios</h2>
+            <h2> <FaCommentDots /> Comentarios</h2>
 
             <div className="Seccion_De_Publicacion">
 

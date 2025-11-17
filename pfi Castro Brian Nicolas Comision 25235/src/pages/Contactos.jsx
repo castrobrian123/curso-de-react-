@@ -3,6 +3,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { toast } from 'react-toastify';
+
+import { FaPaperPlane, FaTimesCircle } from "react-icons/fa";
+
 export default function Contactos() {
   const [tipo, setTipo] = useState("consulta");
   const [formData, setFormData] = useState({
@@ -35,12 +39,16 @@ export default function Contactos() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Datos enviados:", { tipo, ...formData });
-    alert(
-      tipo === "empleo"
-        ? "Solicitud de empleo enviada con éxito ✅"
-        : "Consulta enviada con éxito ✅"
-    );
     
+    // Reemplazo de alert() por toast
+    if (tipo === "empleo") {
+      toast.success("✅ Solicitud de empleo enviada con éxito.", { autoClose: 3000 });
+    } else {
+      toast.success("✅ Consulta enviada con éxito.", { autoClose: 3000 });
+    }
+    
+    // Se podría resetear el formulario aquí
+    setFormData({ nombre: "", correo: "", telefono: "", puesto: "", mensaje: "" });
   };
 
   return (
@@ -113,9 +121,11 @@ export default function Contactos() {
 
         <div className="botones">
           <button type="submit">
+            <FaPaperPlane style={{ marginRight: "5px" }} />
             {tipo === "empleo" ? "Enviar solicitud" : "Enviar consulta"}
           </button>
           <Link to="/" className="cancelar">
+            <FaTimesCircle style={{ marginRight: "5px" }} />
             Volver al inicio
           </Link>
         </div>

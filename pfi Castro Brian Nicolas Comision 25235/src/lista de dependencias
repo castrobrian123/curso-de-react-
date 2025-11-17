@@ -1,0 +1,13 @@
+lista de dependencias
+
+npm install react-router-dom
+
+npm install jspdf
+
+npm install jspdf jspdf-autotable
+
+npm install react-helmet-async --legacy-peer-deps
+
+npm install react-toastify --legacy-peer-deps
+
+npm install react-icons --legacy-peer-deps
